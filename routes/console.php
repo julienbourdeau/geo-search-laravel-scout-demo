@@ -27,3 +27,7 @@ Artisan::command('geosearch {lat} {lng} {radius}', function ($lat, $lng, $radius
         return $algolia->search($query, $options);
     })->get());
 })->describe('Simple search for an Airport');
+
+Artisan::command('geosearch2 {query} {lat} {lng} {radius}', function ($query, $lat, $lng, $radius) {
+    dd(\App\Airport::searchAround($query, $lat, $lng, $radius)->get());
+})->describe('Simple search for an Airport, but easier');
