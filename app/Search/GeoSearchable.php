@@ -1,12 +1,9 @@
 <?php
-namespace App\Search;
 
-use Laravel\Scout\Searchable;
+namespace App\Search;
 
 trait GeoSearchable
 {
-    use Searchable;
-
     public static function searchAround($query, $lat, $lng, $radius = 10, $callback = null)
     {
         $location = [
