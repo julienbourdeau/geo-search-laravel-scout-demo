@@ -51,3 +51,40 @@ Artisan::command('searchuk {query}', function ($query) {
         return $algolia->search($query, $options);
     })->get());
 })->describe('Search for an airport in the UK');
+
+
+
+Artisan::command('search {query}', function ($query) {
+//    dd(\App\Airport::search($query)->raw());
+    dd(\App\Airport::search($query)->around(52.9332312, -1.9937525, 1000000)->raw());
+})->describe('Simple search for an Airport');
+
+Artisan::command('count {query}', function ($query) {
+    dd(\App\Airport::search($query)->count());
+});
+
+Artisan::command('searchID {id}', function ($id) {
+    dd(\App\Airport::search($id, function ($algolia, $id, $options) {
+
+        $record = $algolia->getObject($id);
+
+        return [
+            'nbHits' => 1,
+            'hits' => [$record],
+        ];
+    })->get());
+});
+
+//if (is_int($query)) {
+//    Model::search($query, function ($algolia, $query, $options) {
+//
+//        $record = $algolia->getObject($query);
+//
+//        return [
+//            'nbHits' => 1,
+//            'hits' => [$record],
+//        ];
+//    })->get();
+//} else {
+//    Model::search($query);
+//}

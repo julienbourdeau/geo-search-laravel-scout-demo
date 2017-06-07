@@ -168,6 +168,7 @@ return [
          */
         Laravel\Tinker\TinkerServiceProvider::class,
         Laravel\Scout\ScoutServiceProvider::class,
+        Algolia\AdvancedScout\AlgoliaAdvancedScoutServiceProvider::class,
 
         /*
          * Application Service Providers...

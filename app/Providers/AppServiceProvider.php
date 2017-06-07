@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use Algolia\AdvancedScout\Engines\AlgoliaEngine;
+use AlgoliaSearch\Client as Algolia;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Scout\EngineManager;
 
 class AppServiceProvider extends ServiceProvider
 {
