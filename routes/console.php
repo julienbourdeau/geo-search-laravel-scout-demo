@@ -51,3 +51,18 @@ Artisan::command('searchuk {query}', function ($query) {
         return $algolia->search($query, $options);
     })->get());
 })->describe('Search for an airport in the UK');
+
+
+Artisan::command('count {query}', function ($query) {
+    $count = \App\Airport::search($query)->count();
+
+    dd($count);
+})->describe('Total count of results');
+
+Artisan::command('geo {query} {lat} {lng} {radius}', function ($query, $lat, $lng, $radius) {
+    $result = \App\Airport::search($query)
+        ->around($lat, $lng, $radius)
+        ->get(); // ->count() works as well
+
+    dd($result);
+})->describe('Total count of results');
